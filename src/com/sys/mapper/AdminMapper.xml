@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper为根元素，namespace指定了命名空间-->
+<mapper namespace="com.sys.mapper.AdminMapper">
+
+    <select id="getWorkList" resultType="work">
+        SELECT * FROM t_work;
+    </select>
+
+    <select id="getUserPosition" parameterType="Integer" resultType="String">
+        SELECT depart_name FROM t_depart WHERE depart_id= #{id};
+    </select>
+
+    <insert id="addEmployeeInfos" parameterType="user">
+      INSERT INTO t_user(user_name, user_age, user_sex, user_position, depart_id, user_num, user_pass, work_id, del_status)
+	      VALUES(#{user_name}, #{user_age}, #{user_sex}, #{user_position}, #{depart_id}, #{user_num}, #{user_pass}, #{work_id}, #{del_status});
+    </insert>
+
+    <select id="getAllEmployeeInfos" resultType="user">
+      SELECT * FROM t_user WHERE del_status = 0;
+    </select>
+</mapper>

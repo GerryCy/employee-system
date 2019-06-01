@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper为根元素，namespace指定了命名空间-->
+<mapper namespace="com.sys.mapper.EmployeeMapper">
+
+    <select id="findUserByIdAndNum" resultType="com.sys.po.User" parameterType="user">
+        SELECT user_id,user_name,user_num,user_pass
+        FROM t_user
+        WHERE user_num = #{user_num}
+        AND user_pass = #{user_pass};
+    </select>
+
+    <select id="findAdminByIdAndNum" resultType="user" parameterType="user">
+        SELECT admin_id,admin_num,admin_pass
+        FROM t_admin
+        WHERE admin_num = #{user_num}
+        AND admin_pass = #{user_pass};
+    </select>
+
+    <select id="updateUserPass" parameterType="user">
+        UPDATE t_user
+        SET user_pass = #{user_pass}
+        WHERE user_id = #{user_id};
+    </select>
+
+    <insert id="addLeaveInfo" parameterType="leaveInfo">
+        INSERT INTO t_leave(begin_time,end_time,remark_info,review_status,user_id)
+        VALUES(#{begin_time},#{end_time},#{remark_info},#{review_status},#{user_id});
+    </insert>
+
+    <select id="getLeaveInfoList" resultType="leaveInfo" parameterType="Integer">
+        SELECT
+        <if test="id != null">
+            * FROM t_leave WHERE user_id = #{id}
+        </if>
+        <if test="id == null">
+            leave_id,begin_time,end_time,remark_info,review_status,reply_info,del_status,user_name
+            FROM t_leave tl, t_user tu
+            WHERE tl.user_id = tu.user_id
+        </if>
+        AND del_status = 0
+    </select>
+
+    <update id="delLeaveInfo" parameterType="Integer">
+        UPDATE t_leave SET del_status = 1 WHERE leave_id = #{id};
+    </update>
+
+    <update id="updateLeaveStatus" parameterType="leaveInfo">
+        UPDATE t_leave SET review_status = #{review_status}, reply_info = #{reply_info} WHERE leave_id = #{leave_id};
+    </update>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper为根元素，namespace指定了命名空间-->
+<mapper namespace="com.sys.mapper.DepartMapper">
+
+    <select id="getDepartInfoList" resultType="Department">
+        SELECT * FROM t_depart WHERE depart_del = 0;
+    </select>
+
+    <insert id="addDepartment" parameterType="department">
+        INSERT INTO t_depart(depart_name,depart_desc,depart_del,depart_parent)
+        VALUES(#{depart_name},#{depart_desc},#{depart_del},#{depart_parent})
+    </insert>
+
+    <select id="getDepartParentId" parameterType="Integer" resultType="Integer">
+        SELECT COUNT(1) FROM t_depart WHERE depart_del = 0 AND depart_parent = #{id};
+    </select>
+
+    <select id="getDepartEmployees" parameterType="Integer" resultType="Integer">
+        SELECT COUNT(1) FROM t_depart td, t_user tu WHERE td.depart_id = #{id} AND td.depart_id = tu.depart_id;
+    </select>
+
+    <update id="updateDepartStatus" parameterType="Integer">
+        UPDATE t_depart SET depart_del = 1 WHERE depart_id = #{id};
+    </update>
+
+</mapper>
