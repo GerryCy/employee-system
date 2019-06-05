@@ -42,8 +42,10 @@ public class EmployeeController {
         System.out.println(leaveInfo);
 //        Date begin_time = (Date)dateConverter.convert(Date.class, leaveInfo.getBegin_time());
         User user = (User)session.getAttribute("user");
+        Integer between_dayInteger = Integer.valueOf(DateConverter.between_days(leaveInfo.getBegin_time(), leaveInfo.getEnd_time())+"");
         leaveInfo.setReview_status(0);
         leaveInfo.setUser_id(user.getUser_id());
+        leaveInfo.setLeave_days(between_dayInteger);
         employeeService.addLeaveInfo(leaveInfo);
         return "admin/index";
     }

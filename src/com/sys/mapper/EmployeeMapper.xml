@@ -26,21 +26,21 @@
     </select>
 
     <insert id="addLeaveInfo" parameterType="leaveInfo">
-        INSERT INTO t_leave(begin_time,end_time,remark_info,review_status,user_id)
-        VALUES(#{begin_time},#{end_time},#{remark_info},#{review_status},#{user_id});
+        INSERT INTO t_leave(begin_time,end_time,remark_info,review_status,user_id,leave_days)
+        VALUES(#{begin_time},#{end_time},#{remark_info},#{review_status},#{user_id},#{leave_days});
     </insert>
 
     <select id="getLeaveInfoList" resultType="leaveInfo" parameterType="Integer">
         SELECT
         <if test="id != null">
-            * FROM t_leave WHERE user_id = #{id}
+            * FROM t_leave tl WHERE tl.user_id = #{id}
         </if>
         <if test="id == null">
-            leave_id,begin_time,end_time,remark_info,review_status,reply_info,del_status,user_name
+            leave_id,begin_time,end_time,remark_info,review_status,reply_info,tl.del_status,user_name
             FROM t_leave tl, t_user tu
             WHERE tl.user_id = tu.user_id
         </if>
-        AND del_status = 0
+        AND tl.del_status = 0
     </select>
 
     <update id="delLeaveInfo" parameterType="Integer">

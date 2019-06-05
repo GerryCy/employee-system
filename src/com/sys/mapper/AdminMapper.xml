@@ -21,4 +21,36 @@
     <select id="getAllEmployeeInfos" resultType="user">
       SELECT * FROM t_user WHERE del_status = 0;
     </select>
+
+    <select id="getEmployeeList" resultType="user">
+        select * from t_user;
+    </select>
+
+    <select id="getLeaveDays" parameterType="attend" resultType="Integer">
+        SELECT SUM(leave_days) FROM t_leave WHERE user_id = #{user_id} AND del_status = 0 AND begin_time LIKE '%${attend_date}%'
+    </select>
+
+    <insert id="addAttendInfo" parameterType="attend">
+        insert into t_attend(attend_days,user_id,attend_date,leave_days) values(#{attend_days},#{user_id},#{attend_date},#{leave_days});
+    </insert>
+
+    <select id="getAttendList" resultType="attend">
+        select attend_days,attend_date,user_name from t_attend ta,t_user tu where ta.user_id = tu.user_id;
+    </select>
+
+    <select id="getBasicMoney" parameterType="Integer" resultType="Integer">
+        SELECT work_money FROM t_work,t_user WHERE t_work.work_id = t_user.work_id AND t_user.user_id = #{id};
+    </select>
+
+    <select id="getAttendInfo" parameterType="money" resultType="attend">
+        select * from t_attend where user_id = #{user_id} and attend_date = #{pay_date};
+    </select>
+
+    <insert id="addMoneyInfo" parameterType="money">
+        insert into t_pay(pay_num, user_id, pay_date) values(#{pay_num}, #{user_id}, #{pay_date});
+    </insert>
+
+    <select id="getPayList" resultType="money">
+        select * from t_pay;
+    </select>
 </mapper>

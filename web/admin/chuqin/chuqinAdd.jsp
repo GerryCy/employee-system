@@ -35,28 +35,28 @@
                 window.location.href="<%=path %>/common/none.jsp";
             }
             
-		    function yuangongByOrg() {
-		       	var strUrl = "<%=path %>/org?type=orgAll1";
-				var ret = window.showModalDialog(strUrl,"","dialogWidth:800px; dialogHeight:400px; dialogLeft: status:no; directories:yes;scrollbars:yes;Resizable=no;");
-			    if(ret==undefined) {
-			       ret="";
-			    }
-			    if(ret !="") {
-			        document.getElementById("yuangong_id").value=ret;
-			    }
-		    }
+		    <%--function yuangongByOrg() {--%>
+		       	<%--var strUrl = "<%=path %>/admin/orgAll1.jsp";--%>
+				<%--var ret = window.showModalDialog(strUrl,"","dialogWidth:800px; dialogHeight:400px; dialogLeft: status:no; directories:yes;scrollbars:yes;Resizable=no;");--%>
+			    <%--if(ret==undefined) {--%>
+			       <%--ret="";--%>
+			    <%--}--%>
+			    <%--if(ret !="") {--%>
+			        <%--document.getElementById("yuangong_id").value=ret;--%>
+			    <%--}--%>
+		    <%--}--%>
 		    function check() {
-		        if(document.formAdd.yuangong_id.value=="") {
+		        if(document.formAdd.user_id.value=="") {
 		           alert("请选择员工");
 		           return false;
 		        }
 		        document.formAdd.submit();
-		    } 
+		    }
 		</script>
 	</head>
 
 	<body leftmargin="2" topmargin="9" background='<%=path %>/images/allbg.gif'>
-			<form action="<%=path %>/chuqin?type=chuqinAdd" name="formAdd" method="post">
+			<form action="<%=path %>/addAttendInfo.action" name="formAdd" method="post">
 				     <table width="98%" align="center" border="0" cellpadding="4" cellspacing="1" bgcolor="#CBD8AC" style="margin-bottom:8px">
 						<tr bgcolor="#EEF4EA">
 					        <td colspan="3" background="<%=path %>/images/wbg.gif" class='title'><span>出勤管理</span></td>
@@ -66,8 +66,13 @@
 						         员工：
 						    </td>
 						    <td width="75%" bgcolor="#FFFFFF" align="left">
-						        <input type="text" name="user_id" id="yuangong_id" readonly="readonly"/>
-						        <input type="button" value="选择" onclick="yuangongByOrg()"/>
+						        <%--<input type="text" name="user_id" id="yuangong_id" readonly="readonly"/>--%>
+						        <%--<input type="button" value="选择" onclick="yuangongByOrg()"/>--%>
+								<select style="width:144px" name="user_id" id="user_id">
+									<c:forEach items="${requestScope.userList}" var="user" >
+										<option value="${user.user_id}">${user.user_name}</option>
+									</c:forEach>
+								</select>
 						    </td>
 						</tr>
 						<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
@@ -79,14 +84,14 @@
 						    </td>
 						</tr>
 						
-						<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
-						    <td width="25%" bgcolor="#FFFFFF" align="right">
-						         出勤天数：
-						    </td>
-						    <td width="75%" bgcolor="#FFFFFF" align="left">
-						        <input type="text" name="attend_days" value="22" size="22" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"/>
-						    </td>
-						</tr>
+						<%--<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">--%>
+						    <%--<td width="25%" bgcolor="#FFFFFF" align="right">--%>
+						         <%--出勤天数：--%>
+						    <%--</td>--%>
+						    <%--<td width="75%" bgcolor="#FFFFFF" align="left">--%>
+						        <%--<input type="text" name="attend_days" value="22" size="22" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"/>--%>
+						    <%--</td>--%>
+						<%--</tr>--%>
 						<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
 						    <td width="25%" bgcolor="#FFFFFF" align="right">
 						        &nbsp;

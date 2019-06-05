@@ -47,22 +47,22 @@ String path = request.getContextPath();
 					<td width="25%">月份</td>
 					<td width="25%">出勤天数</td>
 					<td width="25%">员工</td>
-					<td width="25%">操作</td>
+					<%--<td width="25%">操作</td>--%>
 		        </tr>	
-				<c:forEach items="${requestScope.chuqinList}" var="chuqin">
+				<c:forEach items="${requestScope.attendList}" var="attend">
 				<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
 					<td bgcolor="#FFFFFF" align="center">
-						 ${chuqin.yuefen}
+						 ${attend.attend_date}
 					</td>
 					<td bgcolor="#FFFFFF" align="center">
-						 ${chuqin.tianshu}
+						 ${attend.attend_days}
 					</td>
 					<td bgcolor="#FFFFFF" align="center">
-					    ${chuqin.yuangong.name}
+					    ${attend.user_name}
 					</td>
-					<td bgcolor="#FFFFFF" align="center">
-						<a class="pn-loperator" href="#" onclick="chuqinDel(${chuqin.id})">删除</a>
-					</td>
+					<%--<td bgcolor="#FFFFFF" align="center">--%>
+						<%--<a class="pn-loperator" href="#" onclick="chuqinDel(${chuqin.id})">删除</a>--%>
+					<%--</td>--%>
 				</tr>
 				</c:forEach>
 			</table>

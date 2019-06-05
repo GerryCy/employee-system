@@ -13,6 +13,15 @@ public class LeaveInfo {
     public String review_info;
     public Integer user_id;
     public String user_name;
+    public Integer leave_days;
+
+    public Integer getLeave_days() {
+        return leave_days;
+    }
+
+    public void setLeave_days(Integer leave_days) {
+        this.leave_days = leave_days;
+    }
 
     public String getReview_info() {
         return review_info;

@@ -69,16 +69,16 @@
 
 
 	var fun7 = new TreeNode('出勤管理');
-	var fun71 = new TreeNode('出勤管理', '<%=path %>/chuqin?type=chuqinMana', 'tree_node.gif', null, 'tree_node.gif', null);
-	var fun72 = new TreeNode('出勤录入', '<%=path %>/admin/chuqin/chuqinAdd.jsp', 'tree_node.gif', null, 'tree_node.gif', null);
+	var fun71 = new TreeNode('出勤管理', '<%=path %>/getAttendList.action', 'tree_node.gif', null, 'tree_node.gif', null);
+	var fun72 = new TreeNode('出勤录入', '<%=path %>/getEmployeeList.action', 'tree_node.gif', null, 'tree_node.gif', null);
 	fun7.add(fun71);
 	fun7.add(fun72);
 	root.add(fun7);
 
 
 	var fun6 = new TreeNode('工资管理');
-	var fun61 = new TreeNode('工资管理', '<%=path %>/gongzi?type=gongziMana', 'tree_node.gif', null, 'tree_node.gif', null);
-	var fun62 = new TreeNode('工资录入', '<%=path %>/admin/gongzi/gongziAdd.jsp', 'tree_node.gif', null, 'tree_node.gif', null);
+	var fun61 = new TreeNode('工资管理', '<%=path %>/getPayList.action', 'tree_node.gif', null, 'tree_node.gif', null);
+	var fun62 = new TreeNode('工资录入', '<%=path %>/getUserInfoList.action', 'tree_node.gif', null, 'tree_node.gif', null);
 	fun6.add(fun61);
 	fun6.add(fun62);
 	root.add(fun6);

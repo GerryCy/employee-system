@@ -54,12 +54,12 @@
 		    function check()
 		    {
 		    
-		        if(document.formAdd.yuangong_id.value=="")
+		        if(document.formAdd.user_id.value=="")
 		        {
 		           alert("请选择员工");
 		           return false;
 		        }
-		        if(document.formAdd.yuefen.value=="")
+		        if(document.formAdd.pay_date.value=="")
 		        {
 		           alert("请选择月份");
 		           return false;
@@ -71,7 +71,7 @@
 	</head>
 
 	<body leftmargin="2" topmargin="9" background='<%=path %>/images/allbg.gif'>
-			<form action="<%=path %>/gongzi?type=gongziAdd" name="formAdd" method="post">
+			<form action="<%=path %>/addMoneyInfo.action" name="formAdd" method="post">
 				     <table width="98%" align="center" border="0" cellpadding="4" cellspacing="1" bgcolor="#CBD8AC" style="margin-bottom:8px">
 						<tr bgcolor="#EEF4EA">
 					        <td colspan="3" background="<%=path %>/images/wbg.gif" class='title'><span>工资管理</span></td>
@@ -81,8 +81,13 @@
 						         员工：
 						    </td>
 						    <td width="75%" bgcolor="#FFFFFF" align="left">
-						        <input type="text" name="yuangong_id" id="yuangong_id" readonly="readonly"/>
-						        <input type="button" value="选择" onclick="yuangongByOrg()"/>
+						        <%--<input type="text" name="yuangong_id" id="yuangong_id" readonly="readonly"/>--%>
+						        <%--<input type="button" value="选择" onclick="yuangongByOrg()"/>--%>
+								<select style="width:144px" name="user_id" id="user_id">
+									<c:forEach items="${requestScope.userList}" var="user" >
+										<option value="${user.user_id}">${user.user_name}</option>
+									</c:forEach>
+								</select>
 						    </td>
 						</tr>
 						<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
@@ -90,18 +95,18 @@
 						         月份：
 						    </td>
 						    <td width="75%" bgcolor="#FFFFFF" align="left">
-						        <input name="yuefen" readonly="readonly" class="Wdate"  type="text" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM'})"/>
+						        <input name="pay_date" id="pay_date" readonly="readonly" class="Wdate"  type="text" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM'})"/>
 						    </td>
 						</tr>
-						
-						<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
-						    <td width="25%" bgcolor="#FFFFFF" align="right">
-						         金额：
-						    </td>
-						    <td width="75%" bgcolor="#FFFFFF" align="left">
-						        <input type="text" name="jine" value="2000" size="22" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"/>
-						    </td>
-						</tr>
+						<%----%>
+						<%--<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">--%>
+						    <%--<td width="25%" bgcolor="#FFFFFF" align="right">--%>
+						         <%--金额：--%>
+						    <%--</td>--%>
+						    <%--<td width="75%" bgcolor="#FFFFFF" align="left">--%>
+						        <%--<input type="text" name="pay_name" value="2000" size="22" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"/>--%>
+						    <%--</td>--%>
+						<%--</tr>--%>
 						<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
 						    <td width="25%" bgcolor="#FFFFFF" align="right">
 						        &nbsp;
